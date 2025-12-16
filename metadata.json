@@ -1,0 +1,5 @@
+{
+  "name": "SmartMatch AI Illustrator",
+  "description": "Intelligently generates matching illustrations based on your copy, headlines, or articles using Gemini.",
+  "requestFramePermissions": []
+}
