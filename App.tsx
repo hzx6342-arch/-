@@ -11,14 +11,14 @@ const App: React.FC = () => {
   const [result, setResult] = useState<GeneratedResult | null>(null);
   const [error, setError] = useState<AppError | null>(null);
 
-  const handleGenerate = async (originalText: string) => {
+  const handleGenerate = async (originalText: string, style: string) => {
     setStatus(GenerationStatus.OPTIMIZING);
     setError(null);
     setResult(null);
 
     try {
       // Step 1: Optimize text for image generation (Text -> Descriptive Prompt)
-      const optimizedPrompt = await optimizePrompt(originalText);
+      const optimizedPrompt = await optimizePrompt(originalText, style);
       
       setStatus(GenerationStatus.GENERATING);
       
@@ -29,7 +29,8 @@ const App: React.FC = () => {
         originalText,
         optimizedPrompt,
         imageDataUrl,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        style
       });
       setStatus(GenerationStatus.SUCCESS);
 
@@ -44,7 +45,7 @@ const App: React.FC = () => {
 
   const handleRetry = () => {
     if (result) {
-      handleGenerate(result.originalText);
+      handleGenerate(result.originalText, result.style);
     }
   };
 

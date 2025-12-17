@@ -11,6 +11,7 @@ export interface GeneratedResult {
   optimizedPrompt: string;
   imageDataUrl: string;
   timestamp: number;
+  style: string;
 }
 
 export interface AppError {
